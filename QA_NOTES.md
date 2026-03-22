@@ -11,13 +11,18 @@
 - requires `requests` (only external dependency, pinned in requirements.txt)
 
 ### Note on live API testing
-- live paginator test requires network access to JSONPlaceholder
-- core exporter logic (CSV/JSON write, empty handling) verified locally
+- live integration test against JSONPlaceholder: PASS
+- CLI executed successfully with `py src/main.py --output-format both --output-dir output`
+- fetched 100 records from `posts`
+- generated fresh real-run outputs:
+  - `output/results.csv`
+  - `output/results.json`
+  - `sample_output/results_sample.csv`
+  - `sample_output/results_sample.json`
 
 ### QA decision
-**Pass for internal MVP / portfolio packaging prep**
+**Pass for public portfolio packaging**
 
 ### Before public release
-- run live integration test against JSONPlaceholder
-- add sample_output files generated from a real run
-- initialize Git repo and prepare GitHub-ready packaging
+- optionally add a second example endpoint or auth variant
+- initialize/update Git repo and prepare GitHub release/update post

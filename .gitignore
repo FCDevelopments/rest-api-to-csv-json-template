@@ -2,5 +2,8 @@
 __pycache__/
 .pytest_cache/
 .venv/
+Lib/
+Scripts/
+pyvenv.cfg
 output/*
 !output/.gitkeep

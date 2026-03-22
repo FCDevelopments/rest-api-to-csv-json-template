@@ -27,6 +27,13 @@ Uses the free [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API — n
 |---|---|
 | `output/results.csv` | Paginated API results as a flat CSV |
 | `output/results.json` | Paginated API results as formatted JSON |
+| `sample_output/results_sample.csv` | Sample CSV generated from a real JSONPlaceholder run |
+| `sample_output/results_sample.json` | Sample JSON generated from a real JSONPlaceholder run |
+
+## Validation status
+- local exporter tests passing
+- live JSONPlaceholder demo run passing on 2026-03-22
+- generated sample output files included for portfolio review
 
 ## Requirements
 - Python 3.9+

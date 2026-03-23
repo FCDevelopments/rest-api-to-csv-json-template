@@ -31,9 +31,9 @@ Uses the free [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API — n
 | `sample_output/results_sample.json` | Sample JSON generated from a real JSONPlaceholder run |
 
 ## Validation status
-- local exporter tests passing
-- live JSONPlaceholder demo run passing on 2026-03-22
-- generated sample output files included for portfolio review
+- local exporter tests passing (`45 passed, 10 skipped` on 2026-03-23)
+- live JSONPlaceholder demo run passing on 2026-03-23
+- generated sample output files refreshed from a real run on 2026-03-23 for portfolio review
 
 ## Requirements
 - Python 3.9+

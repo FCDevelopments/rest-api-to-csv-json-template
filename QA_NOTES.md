@@ -12,13 +12,17 @@
 
 ### Note on live API testing
 - live integration test against JSONPlaceholder: PASS
-- CLI executed successfully with `py src/main.py --output-format both --output-dir output`
-- fetched 100 records from `posts`
-- generated fresh real-run outputs:
-  - `output/results.csv`
-  - `output/results.json`
-  - `sample_output/results_sample.csv`
-  - `sample_output/results_sample.json`
+- 2026-03-23 verification:
+  - `python -m pytest -q` → `45 passed, 10 skipped`
+  - CLI executed successfully with:
+    - `python src/main.py --output-format csv --output-dir output`
+    - `python src/main.py --output-format json --output-dir output`
+  - fetched 100 records from `posts`
+  - refreshed real-run outputs:
+    - `output/results.csv`
+    - `output/results.json`
+    - `sample_output/results_sample.csv`
+    - `sample_output/results_sample.json`
 
 ### QA decision
 **Pass for public portfolio packaging**

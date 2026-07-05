@@ -11,6 +11,23 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List
 
+# Characters that spreadsheet apps (Excel, Sheets, LibreOffice) treat as the
+# start of a formula. A cell beginning with one of these can execute when the
+# CSV is opened — "CSV formula injection." We defuse it by prefixing a single
+# quote so the value is rendered as literal text.
+_FORMULA_TRIGGERS = ("=", "+", "-", "@", "\t", "\r")
+
+
+def _sanitize_cell(value: Any) -> Any:
+    """Neutralize spreadsheet formula injection in a single CSV cell.
+
+    Non-string values pass through unchanged; strings that begin with a
+    formula trigger get a leading apostrophe so they render as plain text.
+    """
+    if isinstance(value, str) and value and value[0] in _FORMULA_TRIGGERS:
+        return "'" + value
+    return value
+
 
 def export_csv(results: List[Dict[str, Any]], output_dir: str, filename: str = "results.csv") -> Path:
     """Write a list of result dicts to a CSV file.
@@ -42,7 +59,10 @@ def export_csv(results: List[Dict[str, Any]], output_dir: str, filename: str = "
     with output_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
         writer.writeheader()
-        writer.writerows(results)  # writes all rows in one call
+        # Sanitize every cell against CSV formula injection before writing.
+        writer.writerows(
+            {k: _sanitize_cell(v) for k, v in row.items()} for row in results
+        )
 
     return output_path
 
